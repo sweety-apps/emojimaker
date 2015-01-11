@@ -1,0 +1,93 @@
+<!doctype html>
+<meta charset="utf-8">
+<head> 
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/Watermark.js"></script>
+<script> 
+
+var newImgs = new Image();
+newImgs.src = "img/1.jpg";
+var newImgs2 = new Image();
+newImgs2.src = "img/qq.jpg";
+
+window.onload = function() { 
+	var canvas = document.getElementById('thecanvas');
+	var canvas1 = document.getElementById('thecanvas1');
+	
+	//文字水印
+	var img = new Watermark(canvas,newImgs,{text:'你大爷',left:50,top:50,color:'#fff',family:'italic small-caps bold 20px 楷体',
+		width:newImgs2.width,
+		height:newImgs2.height
+	});
+	
+	//图片水印
+	var img2 = new Watermark(canvas1,newImgs,{arrImg:newImgs2,left:50,top:50,
+		width:newImgs2.width,
+		height:newImgs2.height
+	});
+	
+	//参数设置
+	/*{
+		canvas == canvas对象
+		newImgs == img对象或img图片路径
+		{
+			text/arrImg : 文本 显示在图像上的文字/img对象(该参数如果传入text文本 将显示水印，如果传入arrImg对象 将显示传入的img) 
+			left: 文字的left位置
+			top:文字的top文字
+			color:'文字的颜色'
+			family:'文字的样式--大小-字体--粗细' （注：这个根据css的 font属性来设置 font:...）	
+		}	
+	}*/
+	
+	//方法
+	//getImg()//获取图片的Base64编码路径
+	//downImg()//下载图片
+	
+	//var url = img.getImg();//获取图片路径并把该路径上传到后台 后台通过Base64解码 得到图片路径并保存
+	
+	document.getElementById('saveImageBtn').onclick = function(){//保存文字水印
+		var url = img.getImg();
+		saveImg(url);
+	}
+	
+	document.getElementById('saveImageBtn1').onclick = function(){//保存图片水印
+		var url = img2.getImg();
+		saveImg(url);
+	}
+	
+	function saveImg(url){
+        document.getElementById('imageresult').src=url;
+        return;
+		$.ajax({
+			url:'php/canvas.php',
+			data:{img:url},
+			type:'POST',
+			success: function(msg){
+				alert(msg)
+			}
+		});
+	}
+}; 
+	
+
+</script> 
+</head> 
+<body bgcolor="#E6E6FA"> 
+<div> 
+	<h2>文字水印</h2>
+	<canvas width=200 height=200 id="thecanvas" ></canvas> 
+	<button id="saveImageBtn">保存图片</button> 
+</div> 
+<div> 
+    <h2>图片水印</h2>
+    <canvas width=200 height=200 id="thecanvas1" ></canvas> 
+    <button id="saveImageBtn1">保存图片</button> 
+</div>
+<div>
+    <h2>图片结果</h2>
+    <img width=200 height=200 id="imageresult" alt='from canvas'/>
+</div>
+
+
+</body> 
+</html> 

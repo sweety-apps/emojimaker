@@ -1,0 +1,226 @@
+一、WEB链接
+前缀URL
+http://www.jiaowobiaoqingdi.com
+cookie通用参数：
+key	说明
+userid	用户id，如果没有或不合法，则系统分配
+session	用户session，如果没有或不合法，则系统分配
+
+1.默认页面
+/
+参数：无，页面302自动跳转到模板修改页面
+
+2.主页(支持编辑模式)
+/webview/show
+参数：
+key	说明
+tmpid	模板id
+
+二、数据JSON协议
+前缀URL
+http://www.jiaowobiaoqingdi.com
+cookie通用参数：
+key	说明
+userid	用户id，如果没有或不合法，则系统分配
+session	用户session，如果没有或不合法，则系统分配
+
+JSON通用返回格式：
+{
+    "ret":0,              //0-成功,不为0为失败，10001-登陆错误，10002-服务器维护中
+    "msg":"error occured",  //失败错误信息
+    "data":{
+                            //成功返回的数据字段，如果不成功则无此字段
+    }
+}
+
+1.获取模板信息
+/api/get_templete
+方法：GET
+参数：
+key	说明
+id	模板id
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "id":"xxx",
+        "type":"xxx",
+        "pic_type":"xxx",
+        "picurl":"xxx",
+        "text1":"xxx",
+        "text2":"xxx",
+        "result_picurl":"xxx",
+        "ishot":0,
+    }
+}
+
+2.获取模板分列表
+/api/get_templete_category
+方法：GET
+参数：
+无
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "list":[
+            {
+                "type":"xxx",
+                "thumbnail_url":"xxx",
+                "ishot":0,
+                "name":"xxx",
+                "count":123,
+            },
+            {
+                "type":"xxx",
+                "thumbnail_url":"xxx",
+                "ishot":0,
+                "name":"xxx",
+                "count":123,
+            },
+            ...
+        ],
+    }
+}
+
+
+3.获取模板分类下的的模板列表
+/api/get_templete_list
+方法：GET
+参数：
+key	说明
+type	模板列表type
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "list":[
+            {
+                "id":"xxx",
+                "type":"xxx",
+                "pic_type":"xxx",
+                "picurl":"xxx",
+                "text1":"xxx",
+                "text2":"xxx",
+                "result_picurl":"xxx",
+                "ishot":0,
+            },
+            {
+                "id":"xxx",
+                "type":"xxx",
+                "pic_type":"xxx",
+                "picurl":"xxx",
+                "text1":"xxx",
+                "text2":"xxx",
+                "result_picurl":"xxx",
+                "ishot":0,
+            },
+            ...
+        ],
+    }
+}
+
+
+4.获取图片分类
+/api/get_picture_category
+方法：GET
+参数：
+无
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "list":[
+            {
+                "type":"xxx",
+                "thumbnail_url":"xxx",
+                "ishot":0,
+                "name":"xxx",
+                "count":123,
+            },
+            {
+                "type":"xxx",
+                "thumbnail_url":"xxx",
+                "ishot":0,
+                "name":"xxx",
+                "count":123,
+            },
+            ...
+        ],
+    }
+}
+
+
+5.获取图片分类下的图片列表
+/api/get_picture_list
+方法：GET
+参数：
+key	说明
+type	图片列表type
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "list":[
+            {
+                "pic_type":"xxx",
+                "picurl":"xxx",
+                "ishot":0,
+            },
+            {
+                "pic_type":"xxx",
+                "picurl":"xxx",
+                "ishot":0,
+            },
+            ...
+        ],
+    }
+}
+
+
+6.上传图片
+/api/upload_picture
+方法：POST
+参数：
+key	说明
+filename	文件名
+content-type    image/png
+data    二进制文件
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "picurl":"xxx"
+    }
+}
+
+
+7.生成模板（如果该模板已存在则直接返回该模板的信息）
+/api/generate_templete
+方法：POST
+参数：
+key	说明
+picurl	图片url
+text1   文字1
+text2   文字2
+返回：
+{
+    "ret":0,
+    "msg":"",
+    "data":{
+        "id":"xxx",
+        "type":"xxx",
+        "pic_type":"xxx",
+        "picurl":"xxx",
+        "text1":"xxx",
+        "text2":"xxx",
+        "result_picurl":"xxx",
+        "ishot":0,
+    }
+}
