@@ -1,0 +1,163 @@
+/*
+h1 {text-align: center; font: "Hei Bold"; font-size: 14pt;}
+h2 {text-align: center; font: "Hei Tiny"; font-size: 14pt;}
+p {text-align: left; font: "Hei"; font-size: 14pt;}
+img {left: 2.5%; position: relative; text-align: center; width: 95%; box-shadow:1px 1px 7px #000000;}
+*/
+
+body {
+
+}
+
+/* 几个主页面框架 */
+#view_bg {
+    position: absolute;
+    visibility: visible;
+    margin:0px;
+    border:0px;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow-x:hidden; /*裁剪水平方向多出来的区域*/
+    top:0px;
+    left:0px;
+}
+
+#view_preloading {
+    position: absolute;
+    visibility: visible;
+    top: 40%;
+    text-align: center;
+    width: 100%;
+    color: #a1a1a1;
+}
+
+#view_main {
+    position: absolute;
+    visibility: hidden;
+    opacity: 1.0;
+    z-index: 110;
+    width: 100%;
+    height: 100%;
+}
+
+#view_edit {
+    position: absolute;
+    visibility: hidden;
+    opacity: 1.0;
+    z-index: 120;
+    width: 100%;
+    height: 100%;
+}
+
+#view_select_pic {
+    position: absolute;
+    visibility: hidden;
+    opacity: 1.0;
+    z-index: 130;
+    width: 100%;
+    height: 100%;
+}
+
+#view_select_tmp {
+    position: absolute;
+    visibility: hidden;
+    opacity: 1.0;
+    z-index: 140;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*===================== main页面元素 ===============================*/
+/*结果图片*/
+#view_main_image {
+    position: relative;
+    text-align: center;
+    width: 75%;
+    left: 12.5%;
+    top: 0;
+}
+
+/*左边蒙层*/
+#view_main_cover_left {
+    position: absolute;
+    text-align: center;
+    opacity: 0.0;
+    width: 12.5%;
+    height: 100%;
+    left: 0%;
+    top: 0;
+    z-index: 115;
+}
+
+/*右边蒙层*/
+#view_main_cover_right {
+    position: absolute;
+    text-align: center;
+    opacity: 0.0;
+    width: 20%;
+    height: 100%;
+    left: 78.5%;
+    top: 0;
+    z-index: 115;
+}
+
+/*底部蒙层*/
+#view_main_cover_bottom {
+    position: absolute;
+    text-align: center;
+    opacity: 0.0;
+    width: 100%;
+    height: 40%;
+    left: 12.5%;
+    top: 60%;
+    z-index: 115;
+}
+
+/*保存提示*/
+#view_main_save_tips {
+    position: relative;
+    opacity: 0.0;
+    width: 69.45%;
+    left: 0%;
+    transform:scaleX(0.0);
+}
+
+/*开始按钮图片*/
+#view_main_start_btn_img {
+    position: relative;
+    opacity: 0.0;
+    visibility: hidden;
+    width: 34.53%;
+    left: 68%;
+    top: 0%;
+}
+
+/*开始按钮用于接收点击事件的区域*/
+#view_main_start_btn {
+    position: absolute;
+    opacity: 0.0;
+    z-index: 116;
+    background-color: transparent;
+}
+
+/*分享提示*/
+#view_main_share_tips {
+    position: absolute;
+    visibility: hidden;
+    left: 78.5%;
+    top:0.0%;
+    width: 21.48%;
+}
+
+/*经验值*/
+#view_main_exp_label {
+    position: absolute;
+    opacity: 0.0;
+}
+
+/*===================== 通用控件 ===============================*/
+.common_button {
+
+}

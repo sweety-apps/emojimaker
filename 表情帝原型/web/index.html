@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+    <title>叫我表情帝</title>
+</head>
+<body>
+<div id = "view_bg">
+    <div id = "view_preloading"></div>
+    <div id = "view_main">
+        <img id = "view_main_image" src = "tmp_img/result1.png">
+        <img id = "view_main_save_tips" src = "img/save_pic_tips_wechat.png">
+
+        <img id = "view_main_share_tips" src = "img/share_tips.png">
+        <img id = "view_main_start_btn_img" src = "img/btn_start_a.png" alt = "开始使用表情帝">
+
+        <!--div id = "view_main_start_btn">ttt<br>ttt<br>ttt</div-->
+        <div id = "view_main_exp_label">颜值加载中...</div>
+
+        <div id = "view_main_cover_left"></div>
+        <div id = "view_main_cover_right"></div>
+        <div id = "view_main_cover_bottom"></div>
+        <div id = "view_main_start_btn"></div>
+    </div>
+
+    <div id = "view_edit">
+        <img src = "tmp_img/icon_1.png">
+    </div>
+
+    <div id = "view_select_pic">
+        <img src = "tmp_img/icon_1.png">
+    </div>
+
+    <div id = "view_select_tmp">
+        <img src = "tmp_img/icon_1.png">
+    </div>
+</div>
+
+<script src="./js/libs/seajs/sea.js"></script>
+<script src="./js/libs/seajs/seajs-preload.js"></script>
+<!--script src="./js/libs/seajs/sea-debug.js"></script-->
+<script>
+    // For development
+    if (location.href.indexOf("?dev") > 0) {
+        // Set configuration
+        seajs.config({
+            base:"./js",
+            alias: {
+                "jquery" : "libs/jquery/jquery-1.11.2.js",
+                "html5Loader" : "libs/loader/jquery.html5Loader.js"
+            },
+            preload: ["jquery"]
+        });
+        //seajs.use("jquery");
+        //seajs.use("html5Loader");
+        seajs.use("src/main");
+    }
+    // For production
+    else {
+        // Set configuration
+        seajs.config({
+            base:"./js",
+            alias: {
+                "jquery" : "libs/jquery/jquery-1.11.2.min.js",
+                "html5Loader" : "libs/loader/jquery.html5Loader.min.js"
+            },
+            preload: ["jquery"]
+        });
+        //seajs.use("jquery");
+        //seajs.use("html5Loader");
+        seajs.use("src/main");
+    }
+</script>
+
+</body>
+</html>

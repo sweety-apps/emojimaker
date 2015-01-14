@@ -1,0 +1,327 @@
+/* ========================== 无动画 ===============================*/
+.animationnone
+{
+    animation-name: noneanimation;
+    animation-duration:0.001s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    /* Firefox: */
+    -moz-animation-name: noneanimation;
+    -moz-animation-duration:0.001s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    /* Safari and Chrome: */
+    -webkit-animation-name: noneanimation;
+    -webkit-animation-duration:0.001s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    /* Opera: */
+    -o-animation-name: noneanimation;
+    -o-animation-duration:0.001s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+}
+
+@keyframes noneanimation
+{
+    0%   {transform:scale(1.0,1.0);}
+    100% {transform:scale(1.0,1.0);}
+}
+
+@-moz-keyframes noneanimation /* Firefox */
+{
+    0%   {-moz-transform:scale(1.0,1.0);}
+    100% {-moz-transform:scale(1.0,1.0);}
+}
+
+@-webkit-keyframes noneanimation /* Safari and Chrome */
+{
+    0%   {-webkit-transform:scale(1.0,1.0);}
+    100% {-webkit-transform:scale(1.0,1.0);}
+}
+
+@-o-keyframes noneanimation /* Opera */
+{
+    0%   {-o-transform:scale(1.0,1.0);}
+    100% {-o-transform:scale(1.0,1.0);}
+}
+
+/* ========================== Q弹动画 ===============================*/
+.animationqbounce
+{
+    animation-name: qbounce;
+    animation-duration:0.45s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    /* Firefox: */
+    -moz-animation-name: qbounce;
+    -moz-animation-duration:0.45s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    /* Safari and Chrome: */
+    -webkit-animation-name: qbounce;
+    -webkit-animation-duration:0.45s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    /* Opera: */
+    -o-animation-name: qbounce;
+    -o-animation-duration:0.45s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+}
+
+@keyframes qbounce
+{
+    0%   {transform:scale(0,0);}
+    50%  {transform:scale(1.4,1.4);}
+    75%  {transform:scale(0.6,0.95);}
+    90%  {transform:scale(1.3,0.7);}
+    100% {transform:scale(1.0,1.0);}
+}
+
+@-moz-keyframes qbounce /* Firefox */
+{
+    0%   {-moz-transform:scale(0,0);}
+    50%  {-moz-transform:scale(1.4,1.4);}
+    75%  {-moz-transform:scale(0.6,0.95);}
+    90%  {-moz-transform:scale(1.3,0.7);}
+    100% {-moz-transform:scale(1.0,1.0);}
+}
+
+@-webkit-keyframes qbounce /* Safari and Chrome */
+{
+    0%   {-webkit-transform:scale(0,0);}
+    50%  {-webkit-transform:scale(1.4,1.4);}
+    75%  {-webkit-transform:scale(0.6,0.95);}
+    90%  {-webkit-transform:scale(1.3,0.7);}
+    100% {-webkit-transform:scale(1.0,1.0);}
+}
+
+@-o-keyframes qbounce /* Opera */
+{
+    0%   {-o-transform:scale(0,0);}
+    50%  {-o-transform:scale(1.4,1.4);}
+    75%  {-o-transform:scale(0.6,0.95);}
+    90%  {-o-transform:scale(1.3,0.7);}
+    100% {-o-transform:scale(1.0,1.0);}
+}
+
+/* ========================== Q弹消失动画 ===============================*/
+.animationqbouncehide
+{
+    animation-name: qbouncehide;
+    animation-duration:0.3s;
+    animation-timing-function:ease-in;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    /* Firefox: */
+    -moz-animation-name: qbouncehide;
+    -moz-animation-duration:0.3s;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    /* Safari and Chrome: */
+    -webkit-animation-name: qbouncehide;
+    -webkit-animation-duration:0.3s;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    /* Opera: */
+    -o-animation-name: qbouncehide;
+    -o-animation-duration:0.3s;
+    -o-animation-timing-function: ease-in;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+}
+
+@keyframes qbouncehide
+{
+    0%   {transform:scale(1,1);}
+    60%  {transform:scale(1.3,1.3);}
+    100% {transform:scale(0.0,0.0);}
+}
+
+@-moz-keyframes qbouncehide /* Firefox */
+{
+    0%   {-moz-transform:scale(1,1);}
+    60%  {-moz-transform:scale(1.3,1.3);}
+    100% {-moz-transform:scale(0.0,0.0);}
+}
+
+@-webkit-keyframes qbouncehide /* Safari and Chrome */
+{
+    0%   {-webkit-transform:scale(1,1);}
+    60%  {-webkit-transform:scale(1.3,1.3);}
+    100% {-webkit-transform:scale(0.0,0.0);}
+}
+
+@-o-keyframes qbouncehide /* Opera */
+{
+    0%   {-o-transform:scale(1,1);}
+    60%  {-o-transform:scale(1.3,1.3);}
+    100% {-o-transform:scale(0.0,0.0);}
+}
+
+/* ========================== 底部弹出动画 ===============================*/
+.animationbottomslidein
+{
+    animation-name: bottomslidein;
+    animation-duration:0.3s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    transform-origin: 0% 95%;
+    /* Firefox: */
+    -moz-animation-name: bottomslidein;
+    -moz-animation-duration:0.3s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    -moz-transform-origin:  0% 95%;
+    /* Safari and Chrome: */
+    -webkit-animation-name: bottomslidein;
+    -webkit-animation-duration:0.3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    -webkit-transform-origin:  0% 95%;
+    /* Opera: */
+    -o-animation-name: bottomslidein;
+    -o-animation-duration:0.3s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+    -o-transform-origin: 0% 95%;
+}
+
+@keyframes bottomslidein
+{
+    0%   {transform:scale(1.0,0.01);opacity: 0.0;}
+    80%  {transform:scale(1.0,1.2);opacity: 0.7;}
+    100% {transform:scale(1.0,1.0);opacity: 1.0;}
+}
+
+@-moz-keyframes bottomslidein /* Firefox */
+{
+    0%   {-moz-transform:scale(1.0,0.01);opacity: 0.0;}
+    80%  {-moz-transform:scale(1.0,1.2);opacity: 0.7;}
+    100% {-moz-transform:scale(1.0,1.0);opacity: 1.0;}
+}
+
+@-webkit-keyframes bottomslidein /* Safari and Chrome */
+{
+    0%   {-webkit-transform:scale(1.0,0.01);opacity: 0.0;}
+    80%  {-webkit-transform:scale(1.0,1.2);opacity: 0.7;}
+    100% {-webkit-transform:scale(1.0,1.0);opacity: 1.0;}
+}
+
+@-o-keyframes bottomslidein /* Opera */
+{
+    0%   {-o-transform:scale(1.0,0.01);opacity: 0.0;}
+    80%  {-o-transform:scale(1.0,1.2);opacity: 0.7;}
+    100% {-o-transform:scale(1.0,1.0);opacity: 1.0;}
+}
+
+/* ========================== 扩大消失动画 ===============================*/
+.animationextendout
+{
+    animation-name: extendout;
+    animation-duration:0.25s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    transform-origin: 50% 50%;
+    /* Firefox: */
+    -moz-animation-name: extendout;
+    -moz-animation-duration:0.25s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    -moz-transform-origin:  50% 50%;
+    /* Safari and Chrome: */
+    -webkit-animation-name: extendout;
+    -webkit-animation-duration:0.25s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    -webkit-transform-origin:  50% 50%;
+    /* Opera: */
+    -o-animation-name: extendout;
+    -o-animation-duration:0.25s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+    -o-transform-origin: 50% 50%;
+}
+
+@keyframes extendout
+{
+    0%   {transform:scale(1.0,1.0);opacity: 1.0;}
+    100% {transform:scale(2.0,2.0);opacity: 0.0;}
+}
+
+@-moz-keyframes extendout /* Firefox */
+{
+    0%   {-moz-transform:scale(1.0,1.0);opacity: 1.0;}
+    100% {-moz-transform:scale(2.0,2.0);opacity: 0.0;}
+}
+
+@-webkit-keyframes extendout /* Safari and Chrome */
+{
+    0%   {-webkit-transform:scale(1.0,1.0);opacity: 1.0;}
+    100% {-webkit-transform:scale(2.0,2.0);opacity: 0.0;}
+}
+
+@-o-keyframes extendout /* Opera */
+{
+    0%   {-o-transform:scale(1.0,1.0);opacity: 1.0;}
+    100% {-o-transform:scale(2.0,2.0);opacity: 0.0;}
+}
