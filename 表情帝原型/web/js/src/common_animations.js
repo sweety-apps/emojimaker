@@ -67,47 +67,34 @@ define(function(require, exports, module) {
 
 
     // 动画
-    CommonAnimations.scalePopup = function(item_id)
+    CommonAnimations.doAnimate = function(item_id, animate_css_class)
     {
         var item = CommonAnimations.animatefyItem(item_id);
         item.attr("class","animationnone");
         item.css({"animation-play-state":"running"});
         item.css({"-webkit-animation-play-state":"running"});
-        item.attr("class","animationqbounce");
+        item.attr("class",animate_css_class);
         item.css({"animation-play-state":"running"});
         item.css({"-webkit-animation-play-state":"running"});
+    };
+
+    CommonAnimations.scalePopup = function(item_id)
+    {
+        CommonAnimations.doAnimate(item_id,"animationqbounce");
     };
 
     CommonAnimations.scaleDismiss = function(item_id)
     {
-        var item = CommonAnimations.animatefyItem(item_id);
-        item.attr("class","animationnone");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
-        item.attr("class","animationqbouncehide");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
+        CommonAnimations.doAnimate(item_id,"animationqbouncehide");
     };
 
     CommonAnimations.popFromBottom = function(item_id)
     {
-        var item = CommonAnimations.animatefyItem(item_id);
-        item.attr("class","animationnone");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
-        item.attr("class","animationbottomslidein");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
+        CommonAnimations.doAnimate(item_id,"animationbottomslidein");
     };
 
     CommonAnimations.extendDismiss = function(item_id)
     {
-        var item = CommonAnimations.animatefyItem(item_id);
-        item.attr("class","animationnone");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
-        item.attr("class","animationextendout");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
+        CommonAnimations.doAnimate(item_id,"animationextendout");
     };
 });

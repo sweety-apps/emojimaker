@@ -16,8 +16,8 @@ define(function(require, exports, module) {
     module.exports = CommonButton;
 
     //页面
-    CommonButton.prototype.view = null;
-    CommonButton.prototype.view_img = null;
+    CommonButton.prototype.view = null; //图片
+    CommonButton.prototype.view_img = null;  //蒙层
     CommonButton.prototype.image_normal = null;
     CommonButton.prototype.image_pressed = null;
     CommonButton.prototype.commonbutton_state = null;
@@ -40,15 +40,6 @@ define(function(require, exports, module) {
 
         //设置响应对象的区域
         this.image_pressed = image_pressed;
-        var x = this.view_img.offset().left;
-        var y = this.view_img.offset().top;
-        var w = this.view_img.width();
-        var h = this.view_img.height();
-
-        this.view.css("left",""+x+"px");
-        this.view.css("top",""+y+"px");
-        this.view.css("width",""+w+"px");
-        this.view.css("height",""+h+"px");
 
         //设置状态
         this.setState(COMMONBUTTON_STATE_NORMAL);
@@ -65,7 +56,27 @@ define(function(require, exports, module) {
             this.view.bind('touchend',CommonButton.onTouchEnd);
         }
 
+        this._updateButtonPosition();
+
+        var btn = this;
+        $(window).resize(function(){
+            // 监听窗口变化，对齐图片和蒙层
+            btn._updateButtonPosition();
+        });
+
         return this;
+    };
+
+    CommonButton.prototype._updateButtonPosition = function() {
+        var x = this.view_img.offset().left;
+        var y = this.view_img.offset().top;
+        var w = this.view_img.width();
+        var h = this.view_img.height();
+
+        this.view.css("left",""+x+"px");
+        this.view.css("top",""+y+"px");
+        this.view.css("width",""+w+"px");
+        this.view.css("height",""+h+"px");
     };
 
     //////////////////////////////////////////////
@@ -140,7 +151,7 @@ define(function(require, exports, module) {
 
     //////////////////////////////////////////////
 
-    CommonButton.prototype.show = function(isAnimated) {
+    CommonButton.prototype.show = function(isAnimated, customAnimationName) {
         if(this.isShowing)
         {
             return;
@@ -151,8 +162,18 @@ define(function(require, exports, module) {
 
         if(isAnimated)
         {
+            this.view.css("opacity", "1.0");
             this.view_img.css("opacity", "1.0");
-            CommonAnimations.scalePopup("#"+this.view_img.attr('id'));
+            if(customAnimationName != null && customAnimationName != undefined)
+            {
+                CommonAnimations.doAnimate("#"+this.view_img.attr('id'), customAnimationName);
+                CommonAnimations.doAnimate("#"+this.view.attr('id'), customAnimationName);
+            }
+            else
+            {
+                CommonAnimations.scalePopup("#"+this.view_img.attr('id'));
+                CommonAnimations.scalePopup("#"+this.view.attr('id'));
+            }
         }
         else
         {
@@ -161,7 +182,7 @@ define(function(require, exports, module) {
         }
     };
 
-    CommonButton.prototype.hide = function(isAnimated) {
+    CommonButton.prototype.hide = function(isAnimated, customAnimationName) {
         if(!this.isShowing)
         {
             return;
@@ -169,15 +190,25 @@ define(function(require, exports, module) {
         this.isShowing = false;
 
         this.view.css("visibility", "visible");
+        this.view_img.css("opacity", "1.0");
         if(isAnimated)
         {
-            CommonAnimations.scaleDismiss("#"+this.view_img.attr('id'));
+            if(customAnimationName != null && customAnimationName != undefined)
+            {
+                CommonAnimations.doAnimate("#"+this.view_img.attr('id'), customAnimationName);
+                CommonAnimations.doAnimate("#"+this.view.attr('id'), customAnimationName);
+            }
+            else
+            {
+                CommonAnimations.scaleDismiss("#"+this.view_img.attr('id'));
+                CommonAnimations.scaleDismiss("#"+this.view.attr('id'));
+            }
             this.view.animate({opacity:0.0,visibility:"hidden"},500);
         }
         else
         {
             this.view.css("opacity", "0.0");
-            this.view.css("visibility", "hidden");
+            this.view_img.css("visibility", "hidden");
         }
     };
 

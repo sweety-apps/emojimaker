@@ -19,6 +19,7 @@ body {
     width: 100%;
     height: 100%;
     overflow-x:hidden; /*裁剪水平方向多出来的区域*/
+    overflow-y:hidden; /*裁剪水平方向多出来的区域*/
     top:0px;
     left:0px;
 }
@@ -70,20 +71,47 @@ body {
 
 
 /*===================== main页面元素 ===============================*/
+
+/*结果图片包裹框，保证结果图片居中展示*/
+#view_main_image_container {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
 /*结果图片*/
 #view_main_image {
     position: relative;
     text-align: center;
-    width: 75%;
-    left: 12.5%;
+    opacity: 1.0;
+    width: 75vw;
+    /*left: 12.5%;*/
+    top: 9.8vw;
+    max-width: 65vh;
+    z-index: 112;
+}
+
+/*测试蒙层类*/
+.test_cover_bg {
+    opacity: 0.0;
+    /*background-color: #00ff00;*/
+}
+
+/*上边蒙层*/
+#view_main_cover_top {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 9.8vw;
+    left: 0%;
     top: 0;
+    z-index: 115;
 }
 
 /*左边蒙层*/
 #view_main_cover_left {
     position: absolute;
     text-align: center;
-    opacity: 0.0;
     width: 12.5%;
     height: 100%;
     left: 0%;
@@ -95,7 +123,6 @@ body {
 #view_main_cover_right {
     position: absolute;
     text-align: center;
-    opacity: 0.0;
     width: 20%;
     height: 100%;
     left: 78.5%;
@@ -107,35 +134,76 @@ body {
 #view_main_cover_bottom {
     position: absolute;
     text-align: center;
-    opacity: 0.0;
     width: 100%;
-    height: 40%;
+    height: 100%;
     left: 12.5%;
-    top: 60%;
+    top: 85vw;
     z-index: 115;
+}
+
+
+/*保存图片的包裹框，确保跟结果图片对齐*/
+#view_main_save_tips_container {
+    position: absolute;
+    width: 100%;
+    height: 75vw;
+    top: 7.8vw;
+    max-height: 65vh;
+    text-align: center;
+}
+
+/*保存图片*/
+#view_main_save_tips_img {
+    position: relative;
+    opacity: 0.0;
+    width: 100vw;
+    top: 100%;
+    z-index: 113;
+    max-width: 100vh;
+    transform:scaleX(0.0);
 }
 
 /*保存提示*/
 #view_main_save_tips {
-    position: relative;
+    position: absolute;
     opacity: 0.0;
-    width: 69.45%;
-    left: 0%;
+    width: 100vw;
+    z-index: 116;
     transform:scaleX(0.0);
 }
 
 /*开始按钮图片*/
 #view_main_start_btn_img {
-    position: relative;
+    position: absolute;
     opacity: 0.0;
     visibility: hidden;
-    width: 34.53%;
-    left: 68%;
-    top: 0%;
+    width: 34.53vw;
+    left: 68vw;
+    top: 65vh;
+    max-width: 35vh;
+    z-index: 113;
 }
 
 /*开始按钮用于接收点击事件的区域*/
 #view_main_start_btn {
+    position: absolute;
+    opacity: 0.0;
+    z-index: 116;
+    background-color: transparent;
+}
+
+/*加号更多按钮图片*/
+#view_main_more_btn_img {
+    position: absolute;
+    opacity: 0.0;
+    visibility: hidden;
+    left: 0%;
+    bottom: 0%;
+    width: 24%;
+}
+
+/*加号更多按钮点击事件区域*/
+#view_main_more_btn {
     position: absolute;
     opacity: 0.0;
     z-index: 116;
@@ -148,13 +216,37 @@ body {
     visibility: hidden;
     left: 78.5%;
     top:0.0%;
+    z-index: 113;
     width: 21.48%;
 }
 
-/*经验值*/
+/*经验值条图片*/
+#view_main_exp_label_img {
+    position: absolute;
+    visibility: hidden;
+    left: 0vw;
+    top: 2vw;
+    width: 53.125%;
+}
+
+/*经验值文字连接*/
 #view_main_exp_label {
     position: absolute;
-    opacity: 0.0;
+    visibility: hidden;
+    left: 0vw;
+    top: 2vw;
+    z-index: 116;
+    line-height: 7.8vw;
+    font-size: 3.3vw;
+    font-family: "Heiti",sans-serif;
+    text-align: center;
+}
+
+#view_main_exp_label a:link {
+    color: #222222;
+}
+#view_main_exp_label a:visited {
+    color: #222222;
 }
 
 /*===================== 通用控件 ===============================*/

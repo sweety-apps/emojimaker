@@ -57,10 +57,7 @@ define(function(require, exports, module) {
 
     AppInstance.prototype.startApp = function() {
         $("#view_preloading").css("visibility", "hidden");
-        this.view_main.show(true);
-        this.view_main.showSaveTips(true);
-        //this.view_main.showShareTips(true);
-        this.view_main.showStartButton(true);
+        this.view_main.showForEntryStyle(true);
     };
 
     //程序入口
