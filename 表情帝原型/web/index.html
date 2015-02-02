@@ -7,7 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="img/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/style.css" />
@@ -16,6 +16,8 @@
 </head>
 <body>
 <div id = "view_bg">
+    <div id = "view_debug_label"></div>
+
     <div id = "view_preloading"></div>
     <div id = "view_main">
 
@@ -52,7 +54,41 @@
     </div>
 
     <div id = "view_edit">
-        <img src = "tmp_img/icon_1.png">
+        <img id = "view_edit_finish_btn_img" src = "img/btn_done_a.png" alt = "生成表情">
+        <div id = "view_edit_finish_btn"></div>
+
+        <img id = "view_edit_template_btn_img" src = "img/btn_templete_a.png" alt = "选择表情模板">
+        <div id = "view_edit_template_btn"></div>
+
+        <img id = "view_edit_picture_btn_effect_img" src = "img/edit_pic_btn_effect.png" alt = "表情特效">
+        <div id = "view_edit_picture_container">
+            <img id = "view_edit_picture_btn_img" src = "img/edit_pic_btn_a.png" alt = "选择表情图片">
+        </div>
+        <div id = "view_edit_picture_btn"></div>
+
+        <img id = "view_edit_picture" src = "tmp_img/icon_1.png" alt = "图片主题">
+
+        <img id = "view_edit_cancel_btn_img" src = "img/edit_cancel_btn.png" alt = "放弃编辑">
+        <div id = "view_edit_cancel_btn"></div>
+
+        <div id = "view_edit_text_container">
+            <img id = "view_edit_text_bg_img" src = "img/edit_textbox_bg.png" alt = "表情文字（需替换）">
+            <br /><br />
+            <img id = "view_edit_text2_bg_img" src = "img/edit_textbox_bg.png" alt = "表情文字（需替换）">
+        </div>
+        <img id = "view_edit_text_edit_btn_img" src = "img/edit_textbox_icon_pencil.png" alt = "开始表情制作">
+        <div id = "view_edit_text_edit_btn"></div>
+        <img id = "view_edit_text_clear_btn_img" src = "img/edit_textbox_icon_clear.png" alt = "开始表情制作">
+        <div id = "view_edit_text_clear_btn"></div>
+        <input id = "view_edit_text" maxlength="50" autocomplete="off" rows="1" value="测试文字1（需替换）" name="汉字输入框（需替换）" placeholder="需要文字 ~ _(:з」∠)_" />
+
+        <img id = "view_edit_text2_edit_btn_img" src = "img/edit_textbox_icon_pencil.png" alt = "开始表情制作">
+        <div id = "view_edit_text2_edit_btn"></div>
+        <img id = "view_edit_text2_clear_btn_img" src = "img/edit_textbox_icon_clear.png" alt = "开始表情制作">
+        <div id = "view_edit_text2_clear_btn"></div>
+        <input id = "view_edit_text2" maxlength="100" autocomplete="off" rows="1" value="测试文字2（需替换）" name="英文输入框（需替换）" placeholder="need wen zi ~ _(:з」∠)_"  />
+
+        <div id = "view_edit_cover"></div>
     </div>
 
     <div id = "view_select_pic">
@@ -60,6 +96,10 @@
     </div>
 
     <div id = "view_select_tmp">
+        <img src = "tmp_img/icon_1.png">
+    </div>
+
+    <div id = "view_save_help">
         <img src = "tmp_img/icon_1.png">
     </div>
 </div>

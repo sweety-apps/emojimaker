@@ -2,7 +2,8 @@ define(function(require, exports, module) {
     require('jquery');
     var CommonButton = require('./common_button');
     var CommonAnimations = require('./common_animations');
-    var CommonUtil = require('./common_util')
+    var CommonUtil = require('./common_util');
+    var ViewEdit = require('./view_edit');
 
     // instruction
     function ViewMain() {
@@ -27,6 +28,15 @@ define(function(require, exports, module) {
     ViewMain.prototype.view_main_cover_bottom = null;
     ViewMain.prototype.view_main_image = null;
 
+    //回调
+    ViewMain.prototype._view_main_pressed_start_func = null;
+    ViewMain.prototype._view_main_pressed_start_func_ctx = null;
+    ViewMain.prototype._view_main_pressed_more_func = null;
+    ViewMain.prototype._view_main_pressed_more_func_ctx = null;
+    ViewMain.prototype._view_main_pressed_save_tips_func = null;
+    ViewMain.prototype._view_main_pressed_save_tips_func_ctx = null;
+
+    //状态变量
     ViewMain.prototype.is_entry_show_style = false; //show的时候是不是以Entry的方式
 
     ViewMain.getSaveTipsViewImage = function()
@@ -49,6 +59,10 @@ define(function(require, exports, module) {
     };
 
     ViewMain.prototype._init = function() {
+        // 先预对齐下元素
+        this._adjustItemsMaxWidth();
+
+        // 成员变量
         this.view_main = $("#view_main");
         this.view_main_save_tips = new CommonButton("#view_main_save_tips","#view_main_save_tips_img",ViewMain.getSaveTipsViewImage(),ViewMain.getSaveTipsViewImage());
         this.view_main_share_tips = $("#view_main_share_tips");
@@ -70,15 +84,41 @@ define(function(require, exports, module) {
         });
         this._updateCoverViewPosition();
 
-        // 点击测试
+        // 点击事件处理
         this.view_main_start_btn.setClickCallback(function(btn,view_main){
+            if(view_main._view_main_pressed_start_func != null
+                && view_main._view_main_pressed_start_func != undefined)
+            {
+                view_main._view_main_pressed_start_func(view_main._view_main_pressed_start_func_ctx);
+            }
+        },this);
 
-            view_main.hide(true);
+        this.view_main_more_btn.setClickCallback(function(btn,view_main){
+            if(view_main._view_main_pressed_more_func != null
+                && view_main._view_main_pressed_more_func != undefined)
+            {
+                view_main._view_main_pressed_more_func(view_main._view_main_pressed_more_func_ctx);
+            }
+        },this);
 
+        this.view_main_save_tips.setClickCallback(function(btn,view_main){
+            if(view_main._view_main_pressed_save_tips_func != null
+                && view_main._view_main_pressed_save_tips_func != undefined)
+            {
+                view_main._view_main_pressed_save_tips_func(view_main._view_main_pressed_save_tips_func_ctx);
+            }
         },this);
 
 
         return this;
+    };
+
+    //兼容微信的vh被修改的傻逼bug
+    ViewMain.prototype._adjustItemsMaxWidth = function(){
+        CommonUtil.setMaxWidthForItem("#view_main_image",65);
+        CommonUtil.setMaxWidthForItem("#view_main_save_tips_img",100);
+        CommonUtil.setMaxWidthForItem("#view_main_start_btn_img",35);
+        CommonUtil.updateAttributeValueToVHUnit();
     };
 
     ViewMain.prototype._updateCoverViewPosition = function() {
@@ -101,6 +141,24 @@ define(function(require, exports, module) {
 
     };
 
+    // 点击编辑的回调
+    ViewMain.prototype.setPressedStartButtonCallback = function(callback,ctx) {
+        this._view_main_pressed_start_func = callback;
+        this._view_main_pressed_start_func_ctx = ctx;
+    };
+
+    // 点击加号更多的回调
+    ViewMain.prototype.setPressedMoreButtonCallback = function(callback,ctx) {
+        this._view_main_pressed_more_func = callback;
+        this._view_main_pressed_more_func_ctx = ctx;
+    };
+
+    // 点击保存提示的回调
+    ViewMain.prototype.setPressedSaveTipsButtonCallback = function(callback,ctx) {
+        this._view_main_pressed_save_tips_func = callback;
+        this._view_main_pressed_save_tips_func_ctx = ctx;
+    };
+
     // 第一次进来的效果
     ViewMain.prototype.showForEntryStyle = function(isAnimated) {
         this.view_main.css("visibility", "visible");
@@ -112,10 +170,10 @@ define(function(require, exports, module) {
             var view_main = this;
             this.view_main.animate({opacity:1.0},500,function(){
                 view_main.showSaveTips(true);
-                $(window).delay(1500).queue(function(){
+                setTimeout(function(){
                     view_main.showStartButton(true);
                     view_main.showMoreButton(true);
-                });
+                },1500);
             });
 
         }
@@ -179,9 +237,9 @@ define(function(require, exports, module) {
         if(isAnimated)
         {
             this.view_main_image.animate({opacity:0.0},250);
-            $(window).delay(500).queue(function(){
+            setTimeout(function(){
                 view_main.view_main.css({"visibility":"hidden","opacity":0.0});
-            });
+            },500);
         }
         else
         {

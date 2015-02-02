@@ -20,12 +20,21 @@ define(function(require, exports, module) {
     CommonButton.prototype.view_img = null;  //蒙层
     CommonButton.prototype.image_normal = null;
     CommonButton.prototype.image_pressed = null;
+
+    //状态
     CommonButton.prototype.commonbutton_state = null;
-    CommonButton.prototype.onPressedFunc = null;
-    CommonButton.prototype.onPressedCtx = null;
     CommonButton.prototype.isShowing = false;
     CommonButton.prototype.isTouching = false;
 
+    //回调
+    CommonButton.prototype.onPressedFunc = null;
+    CommonButton.prototype.onPressedCtx = null;
+    CommonButton.prototype.onTouchedFunc = null;
+    CommonButton.prototype.onTouchedCtx = null;
+    CommonButton.prototype.onReleasedFunc = null;
+    CommonButton.prototype.onReleasedCtx = null;
+
+    //全局所有button
     CommonButton.btndict = null;
 
     CommonButton.prototype._init = function(item_id,item_img_id,image_normal,image_pressed) {
@@ -37,9 +46,11 @@ define(function(require, exports, module) {
         }
         CommonButton.btndict[item_id]=this;
         this.image_normal = image_normal;
-
-        //设置响应对象的区域
         this.image_pressed = image_pressed;
+
+        //先隐藏
+        this.view.css("visibility", "hidden");
+        this.view_img.css("visibility", "hidden");
 
         //设置状态
         this.setState(COMMONBUTTON_STATE_NORMAL);
@@ -93,17 +104,33 @@ define(function(require, exports, module) {
         CommonButton.getButtonWithItemId("#"+this.id).setState(COMMONBUTTON_STATE_MOUSEOVER);
     };
 
+    CommonButton.onDown = function(view){
+        var btn = CommonButton.getButtonWithItemId("#"+view.id);
+        btn.setState(COMMONBUTTON_STATE_PRESSED);
+        btn.isTouching = true;
+        //回调
+        if(btn.onTouchedFunc != null && btn.onTouchedFunc != undefined)
+        {
+            btn.onTouchedFunc(btn,btn.onTouchedCtx);
+        }
+    };
+
     CommonButton.onClicked = function(view){
         var btn = CommonButton.getButtonWithItemId("#"+view.id);
         if(btn.commonbutton_state != COMMONBUTTON_STATE_NORMAL)
         {
             btn.setState(COMMONBUTTON_STATE_NORMAL);
         }
+        btn.isTouching = false;
+        //回调
+        if(btn.onReleasedFunc != null && btn.onReleasedFunc != undefined)
+        {
+            btn.onReleasedFunc(btn,btn.onReleasedCtx);
+        }
         if(btn.onPressedFunc != null && btn.onPressedFunc != undefined)
         {
             btn.onPressedFunc(btn,btn.onPressedCtx);
         }
-        btn.isTouching = false;
     };
 
     CommonButton.onLeave = function(view){
@@ -112,7 +139,13 @@ define(function(require, exports, module) {
         {
             btn.setState(COMMONBUTTON_STATE_NORMAL);
         }
+        var touchedBefore = btn.isTouching;
         btn.isTouching = false;
+        //回调
+        if(touchedBefore && btn.onReleasedFunc != null && btn.onReleasedFunc != undefined)
+        {
+            btn.onReleasedFunc(btn,btn.onReleasedCtx);
+        }
     };
 
     CommonButton.onTouchEnd = function(event) {
@@ -144,9 +177,7 @@ define(function(require, exports, module) {
     };
 
     CommonButton.onMouseDown = function(event){
-        var btn = CommonButton.getButtonWithItemId("#"+this.id);
-        btn.setState(COMMONBUTTON_STATE_PRESSED);
-        btn.isTouching = true;
+        CommonButton.onDown(this);
     };
 
     //////////////////////////////////////////////
@@ -190,6 +221,8 @@ define(function(require, exports, module) {
         this.isShowing = false;
 
         this.view.css("visibility", "visible");
+        this.view_img.css("visibility", "visible");
+        this.view.css("opacity", "1.0");
         this.view_img.css("opacity", "1.0");
         if(isAnimated)
         {
@@ -208,6 +241,8 @@ define(function(require, exports, module) {
         else
         {
             this.view.css("opacity", "0.0");
+            this.view_img.css("opacity", "0.0");
+            this.view.css("visibility", "hidden");
             this.view_img.css("visibility", "hidden");
         }
     };
@@ -255,5 +290,18 @@ define(function(require, exports, module) {
     {
         this.onPressedFunc = func;
         this.onPressedCtx = ctx;
-    }
+    };
+
+    CommonButton.prototype.setTouchedCallback = function (func,ctx)
+    {
+        this.onTouchedFunc = func;
+        this.onTouchedCtx = ctx;
+    };
+
+    CommonButton.prototype.setReleasedCallback = function (func,ctx)
+    {
+        this.onReleasedFunc = func;
+        this.onReleasedCtx = ctx;
+    };
+
 });

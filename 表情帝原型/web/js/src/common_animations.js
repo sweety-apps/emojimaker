@@ -65,17 +65,27 @@ define(function(require, exports, module) {
         return item;
     }
 
+    // 设置播放状态
+    CommonAnimations.setPlayState = function(item,state_str)
+    {
+        item.css({
+            "animation-play-state":state_str,
+            "-webkit-animation-play-state":state_str,
+            "-moz-animation-play-state":state_str,
+            "-o-animation-play-state":state_str
+        });
+    }
 
     // 动画
     CommonAnimations.doAnimate = function(item_id, animate_css_class)
     {
         var item = CommonAnimations.animatefyItem(item_id);
         item.attr("class","animationnone");
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
+        CommonAnimations.setPlayState(item,"paused");
+        CommonAnimations.setPlayState(item,"running");
         item.attr("class",animate_css_class);
-        item.css({"animation-play-state":"running"});
-        item.css({"-webkit-animation-play-state":"running"});
+        CommonAnimations.setPlayState(item,"paused");
+        CommonAnimations.setPlayState(item,"running");
     };
 
     CommonAnimations.scalePopup = function(item_id)

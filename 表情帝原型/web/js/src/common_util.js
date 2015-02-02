@@ -29,18 +29,16 @@ define(function(require, exports, module) {
     var gBrowser = null;    //浏览器类型和版本
     var gWrapperAppType = null; //哪个APP打开的
     var gDeviceType = null; //设备类型
+    var gItemsAttrAndVHValueDict = null; //动态调整属性到vh单位，防iOS微信浏览器bug
 
     function CommonUtil()
     {
         this._init();
     };
 
-    CommonUtil.prototype._init = function() {
-    };
-
     module.exports = CommonUtil;
 
-
+    CommonUtil.prototype._init = function() {};
 
     CommonUtil._initBrowserTypeAndVersion = function() {
         if(gBrowser == null || gBrowser == undefined){
@@ -154,5 +152,69 @@ define(function(require, exports, module) {
         } else {
             return false;
         }
+    };
+
+    // 通用vh转换函数，注：微信iOS浏览器的bug,input获得焦点时，vh会变化
+    CommonUtil.setAttributeValueToVHUnit = function(item_id,percentOfHeight, attr) {
+        if (gItemsAttrAndVHValueDict == null)
+        {
+            gItemsAttrAndVHValueDict = {};
+            //监听窗口自动设置对象最大宽度
+
+            $(window).resize(function(){
+                // 监听窗口变化，调整最大宽度
+                CommonUtil._updateAttributeValueToVHUnit();
+            });
+        }
+        var array = gItemsAttrAndVHValueDict[item_id];
+        if(array == null || array == undefined)
+        {
+            array = [];
+        }
+        array[array.length] = {"attr":attr,"value":percentOfHeight};
+        gItemsAttrAndVHValueDict[item_id] = array;
+    };
+
+    // 手动对齐下
+    CommonUtil.updateAttributeValueToVHUnit = function() {
+        CommonUtil._updateAttributeValueToVHUnit();
+    };
+
+    CommonUtil._updateAttributeValueToVHUnit = function() {
+        var ww = $(window).width();
+        var wh = $(window).height();
+
+        for(var item_id in gItemsAttrAndVHValueDict)
+        {
+            var item = $(item_id);
+            var array = gItemsAttrAndVHValueDict[item_id];
+            var cssval = null;
+            for(var i = 0; i < array.length; ++i)
+            {
+                var dict = array[i];
+                var percent = dict["value"];
+                var attr_name = dict["attr"];
+                var size = wh * percent / 100.0;
+                if(cssval == null)
+                {
+                    cssval = {};
+                }
+                cssval[attr_name] = ""+size+"px";
+            }
+            if(item != null && item != undefined && cssval != null)
+            {
+                item.css(cssval);
+            }
+        }
+    };
+
+    // 最大宽度
+    CommonUtil.setMaxWidthForItem = function(item_id,percentOfHeight) {
+        CommonUtil.setAttributeValueToVHUnit(item_id,percentOfHeight,"max-width");
+    };
+
+    // 字体大小
+    CommonUtil.setFontForItem = function(item_id,percentOfHeight) {
+        CommonUtil.setAttributeValueToVHUnit(item_id,percentOfHeight,"font-size");
     };
 });

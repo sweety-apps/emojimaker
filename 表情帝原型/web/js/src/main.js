@@ -3,7 +3,9 @@ define(function(require, exports, module) {
     require('jquery');
     require('html5Loader');
     var CommonAnimations = require('./common_animations');
+    var CommonUtil = require('./common_util');
     var ViewMain = require('./view_main');
+    var ViewEdit = require('./view_edit');
 
     // instruction
     function AppInstance() {
@@ -19,17 +21,35 @@ define(function(require, exports, module) {
     AppInstance.prototype.view_select_tmp = null;
 
     AppInstance.prototype._init = function() {
+        // 成员变量
         this.view_bg = $("#view_bg");
         this.view_main = new ViewMain();
-        this.view_edit = $("#view_edit");
+        this.view_edit = new ViewEdit();
         this.view_select_pic = $("#view_select_pic");
         this.view_select_tmp = $("#view_select_tmp");
+
+        // debug，需要删除
+        if(true)
+        {
+            var main = this;
+            setInterval(function(){
+                main._debugWindowSize();
+            },300);
+            this._debugWindowSize();
+        }
+
         return this;
+    };
+
+    AppInstance.prototype._debugWindowSize = function() {
+        var ww = $("body").width();
+        var wh = $("body").height();
+        $("#view_debug_label").text("w:"+ww+",h:"+wh+"");
     };
 
     AppInstance.prototype.hideAllPage = function(isAnimated) {
         this.view_main.hide(isAnimated);
-        this.view_edit.css("visibility", "hidden");
+        this.view_edit.hide(isAnimated);
         this.view_select_pic.css("visibility", "hidden");
         this.view_select_tmp.css("visibility", "hidden");
     };
@@ -57,7 +77,25 @@ define(function(require, exports, module) {
 
     AppInstance.prototype.startApp = function() {
         $("#view_preloading").css("visibility", "hidden");
-        this.view_main.showForEntryStyle(true);
+
+        // 点击处理
+        this.view_main.setPressedStartButtonCallback(function(appInstance){
+            // 开始编辑
+            appInstance.view_main.hide(true);
+            setTimeout(function(){
+                appInstance.view_edit.show(true);
+            },500);
+
+        },this);
+        this.view_main.setPressedMoreButtonCallback(function(appInstance){
+            // 更多跳公众号
+        },this);
+        this.view_main.setPressedSaveTipsButtonCallback(function(appInstance){
+            // 弹出微信保存说明
+        },this);
+
+        //this.view_main.showForEntryStyle(true);
+        this.view_edit.show(true);
     };
 
     //程序入口

@@ -593,3 +593,207 @@
     99%  {-o-transform:translate(-100%,0%); opacity: 1.0;}
     100% {-o-transform:translate(-100%,0%); visibility: hidden;}
 }
+
+/* ========================== 淡入动画 ===============================*/
+.animationfadein
+{
+    animation-name: fadein;
+    animation-duration:0.3s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    transform-origin: 50% 50%;
+    /* Firefox: */
+    -moz-animation-name: fadein;
+    -moz-animation-duration:0.3s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    -moz-transform-origin:  50% 50%;
+    /* Safari and Chrome: */
+    -webkit-animation-name: fadein;
+    -webkit-animation-duration:0.3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    -webkit-transform-origin:  50% 50%;
+    /* Opera: */
+    -o-animation-name: fadein;
+    -o-animation-duration:0.3s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+    -o-transform-origin: 50% 50%;
+}
+
+@keyframes fadein
+{
+    0%   {visibility: visible; opacity: 0.0;}
+    100%   {visibility: visible; opacity: 1.0;}
+}
+
+@-moz-keyframes fadein /* Firefox */
+{
+    0%   {visibility: visible; opacity: 0.0;}
+    100%   {visibility: visible; opacity: 1.0;}
+}
+
+@-webkit-keyframes fadein /* Safari and Chrome */
+{
+    0%   {visibility: visible; opacity: 0.0;}
+    100%   {visibility: visible; opacity: 1.0;}
+}
+
+@-o-keyframes fadein /* Opera */
+{
+    0%   {visibility: visible; opacity: 0.0;}
+    100%   {visibility: visible; opacity: 1.0;}
+}
+
+/* ========================== 淡出动画 ===============================*/
+.animationfadeout
+{
+    animation-name: fadeout;
+    animation-duration:0.3s;
+    animation-timing-function:linear;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    transform-origin: 50% 50%;
+    /* Firefox: */
+    -moz-animation-name: fadeout;
+    -moz-animation-duration:0.3s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    -moz-transform-origin:  50% 50%;
+    /* Safari and Chrome: */
+    -webkit-animation-name: fadeout;
+    -webkit-animation-duration:0.3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    -webkit-transform-origin:  50% 50%;
+    /* Opera: */
+    -o-animation-name: fadeout;
+    -o-animation-duration:0.3s;
+    -o-animation-timing-function: linear;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+    -o-transform-origin: 50% 50%;
+}
+
+@keyframes fadeout
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; }
+}
+
+@-moz-keyframes fadeout /* Firefox */
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; }
+}
+
+@-webkit-keyframes fadeout /* Safari and Chrome */
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; }
+}
+
+@-o-keyframes fadeout /* Opera */
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; }
+}
+
+/* ========================== 淡出动画(慢) ===============================*/
+.animationfadeoutslow
+{
+    animation-name: fadeoutslow;
+    animation-duration:3.0s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-play-state:running;
+    animation-fill-mode : forwards;
+    animation-delay:0s;
+    transform-origin: 50% 50%;
+    /* Firefox: */
+    -moz-animation-name: fadeoutslow;
+    -moz-animation-duration:3.0s;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-play-state:running;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay:0s;
+    -moz-transform-origin:  50% 50%;
+    /* Safari and Chrome: */
+    -webkit-animation-name: fadeoutslow;
+    -webkit-animation-duration:3.0s;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-play-state:running;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay:0s;
+    -webkit-transform-origin:  50% 50%;
+    /* Opera: */
+    -o-animation-name: fadeoutslow;
+    -o-animation-duration:3.0s;
+    -o-animation-timing-function: ease-in;
+    -o-animation-iteration-count: 1;
+    -o-animation-play-state:running;
+    -o-animation-fill-mode : forwards;
+    -o-animation-delay:0s;
+    -o-transform-origin: 50% 50%;
+}
+
+@keyframes fadeoutslow
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    60%   {opacity: 0.99;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; opacity: 0.0;}
+}
+
+@-moz-keyframes fadeoutslow /* Firefox */
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    60%   {opacity: 0.99;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; opacity: 0.0;}
+}
+
+@-webkit-keyframes fadeoutslow /* Safari and Chrome */
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    60%   {opacity: 0.99;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; opacity: 0.0;}
+}
+
+@-o-keyframes fadeoutslow /* Opera */
+{
+    0%   {visibility: visible; opacity: 1.0;}
+    50%   {opacity: 0.99;}
+    99%   {opacity: 0.0;}
+    100%   {visibility: hidden; opacity: 0.0;}
+}
